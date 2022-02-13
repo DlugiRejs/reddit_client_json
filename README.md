@@ -1,3 +1,25 @@
+# About This App
+
+This is **Client for Reddit** App.
+
+* By default and after pressing "home" button - it renders 15 basic informations from posts from [reddit/r/sports](https://www.reddit.com/r/sports/new/)-without advertisements.
+
+* After pressing "tennis" button - it renders 15 basic informations from posts from [reddit/r/tennis](https://www.reddit.com/r/tennis/new/)-without advertisements.
+
+* After pressing "golf" button - it renders 15 basic informations from posts from [reddit/r/golf](https://www.reddit.com/r/golf/new/)-without advertisements.
+
+* After pressing "horses" button - it renders 15 basic informations from posts from [reddit/r/Equestrian](https://www.reddit.com/r/Equestrian/new/)-without advertisements.
+
+**Basic informations** means that app renders:
+1. title 
+2. text
+3. thumbnail of image
+4. movie
+
+There is also a *Search...* field. After typing text into it, you can filter posts that contain typed text in title or text (searching is case - insensitive).
+
+Below you can find default instructions how to run development server etc.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import { SearchTerm } from "./features/searchTerm/SearchTerm.js";
+import { Hobby } from "./features/hobby/Hobby.js";
+import { Posts } from "./features/posts/Posts.js";
+import { getData } from './utils/http-request.js';
+import { appStyles, toTopButtonStyles } from "./styles/styles.js";
 
 function App() {
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [hobby, setHobby] = useState('sports');
+  const [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    async function gD() {
+      const dataObj = await getData(hobby);
+      setData(dataObj.data.children);
+    }
+    gD();
+  }, [hobby]);
+
+  function handleChange(newSearchTerm) {
+    setSearchTerm(newSearchTerm);
+  };
+
+  function handleClick(newHobby) {
+    setHobby(newHobby);
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div data-testid="app" className="App" style={appStyles(hobby)}>
+      <SearchTerm searchTerm={searchTerm} onChange={handleChange} hobby={hobby} />
+      <main>
+        <Hobby onClick={handleClick} hobby={hobby} />
+        <Posts data={data} hobby={hobby} searchTerm={searchTerm} />
+      </main>
+      <footer>
+        <button type="button" className="otherButton" style={toTopButtonStyles(hobby)}>
+          <a href="#buttons"><span>Back to top</span></a>
+        </button>
+      </footer>
     </div>
   );
 }
